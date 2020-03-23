@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>CoinFlipin</title>
+    <link rel="stylesheet" type="text/css" href="./CSS and Images/cssCoinFlip.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./web3.min.js"></script>
+    <script type="text/javascript" src="./abi.js"></script>
+    <script type="text/javascript" src="./mainCoinFlip.js"></script>
+
+  </head>
+  <body>
+    <div style="background-color: darkSeaGreen;">
+      <div>
+        <br>
+        <h1>Welcome to the Coin Flippin Dapp!</h1>
+
+        <img class="ethlogo" id="img_eth_logo" src="./CSS and Images/ethereumLogo.png" alt="eth logo">
+
+        <p class="first">Try to double your Eth with a click.. it's like flipping a coin: 50/50 chances on winning!</p>
+      </div>
+
+      <div class="row">
+        <div class="side">
+          <div class="rules">
+            <h2>How to play:</h2>
+            <ul class="list">
+              <li>Open your Metamask</li>
+              <li>Insert ammount of ETH</li>
+              <li>Flip it</li>
+              <li>Win it!</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="main">
+          <div class="game">
+            <h3>Insert ammount of ETH:</h3>
+            <br>
+            <input type="text" class="form-control" id="eth_ammount" placeholder="ETH" >
+            <br><br>
+            <button type="button" class="flipButton" id="flip_coin">FLIP ETH</button>
+            <br><br>
+            <div>
+              Result: <span id="game_result"></span>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <p>All HTML, CSS, JS and Solidity created for educational purposes by <a href="https://twitter.com/BlockchainDias">Pedro Dias<a></p>
+      </div>
+    </div>
+
+
+  </body>
+</html>
