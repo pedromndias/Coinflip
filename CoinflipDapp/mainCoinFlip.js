@@ -12,7 +12,9 @@ $(document).ready(function() {
       console.log(contractInstance);
     });
     // Let's add a click handler to our button "FLIP ETH", with id "flip_coin":
-    $("#flip_coin").click(inputEth) // Everytime we click the button it will execute inputEth() function
+    $("#flip_coin").click(inputEth).on(displayResult)
+    // Everytime we click the button it will execute inputEth() then displayResult()
+
 });
 
 // Let's implement inputEth() function:
@@ -20,14 +22,36 @@ function inputEth(){
   // We can test the button with alert("input ETH");
   // Now we create a variable with the value input in our text form:
   var ethAmmount = parseInt($("#eth_ammount").val());
-  // Test it with console.log: console.log("Ammount of ETH inserted: " + ethAmmount);
+  // Test it with console.log:
+  console.log("Ammount of ETH inserted: " + ethAmmount);
 
   // Let's create a config for our send() argument:
   var config = {
     value: ethAmmount
   }
 
-  /* Now we can call our function flipCoin() in our contract. The argument will be our new JS variable ethAmmount. We also need
-  to tell web3 where to send this tx, running ".send()": */
-  contractInstance.methods.flipCoin().send(config);
+  /* Now we can call our function flipCoin() in our contract. We also need to tell web3 where
+  to send this tx, running ".send()". The argument will be our new JS variable ethAmmount: */
+  contractInstance.methods.flipCoin().send(config)
+  .on("transactionHash", function(hash){
+    console.log(hash);
+  })
+  .on("confirmation", function(confirmationNr){
+    console.log(confirmationNr);
+  })
+  .on("receipt", function(receipt){
+    console.log(receipt);
+    alert("Done");
+  })
+
+}
+
+// Let's create a function that gets the result of the flipCoin() in the blockchain and shows it in the browser:
+function displayResult(){
+  contractInstance.methods.getResultOfGame().call().then(function(res){
+    // Let's console.log see the format of the result:
+    console.log(res);
+    // Now we use jquery to set the value of the result:
+    $("#game_result").text(res.resultOfGame);
+  })
 }
