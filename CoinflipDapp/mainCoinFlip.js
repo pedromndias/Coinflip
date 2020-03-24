@@ -12,10 +12,14 @@ $(document).ready(function() {
       console.log(contractInstance);
     });
     // Let's add a click handler to our button "FLIP ETH", with id "flip_coin":
-    $("#flip_coin").click(inputEth).on(displayResult)
+    $("#flip_coin").click(bothFunctions)
     // Everytime we click the button it will execute inputEth() then displayResult()
 
 });
+function bothFunctions(){
+  inputEth();
+  displayResult();
+}
 
 // Let's implement inputEth() function:
 function inputEth(){
