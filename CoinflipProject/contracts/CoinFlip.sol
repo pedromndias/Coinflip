@@ -18,10 +18,10 @@ contract CoinFlip is Ownable{
     // Variable for the ammount paid to the player:
     uint valueToPlayer;
 
-    // Function with some pseudo randomness, given by Filip:
+    /* Function with some pseudo randomness, given by Filip:
     function random() public view returns(uint){
         return now % 2;
-    }
+    } */
 
     // Let's create a function that flips the coin. It has to be payable.
     function flipCoin() public payable returns(uint){
@@ -54,7 +54,7 @@ contract CoinFlip is Ownable{
     }
 
     // Let's write a function to send the data to the browser:
-    function getResultOfGame() public view returns (uint){
+    function getResultOfGame() public view returns (uint) {
         return resultOfGame;
     }
 
