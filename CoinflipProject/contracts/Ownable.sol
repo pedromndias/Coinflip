@@ -8,7 +8,7 @@ contract Ownable{
         _;
     }
 
-    constructor() public{
+    constructor() public payable{
         owner = msg.sender;
     }
 }

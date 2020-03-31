@@ -11,6 +11,6 @@ contract("CoinFlip", async function(accounts){
 
 
   it("should not allow zero or negative eth sent", async function(){
-    await truffleAssert.fails(instance.coinFlipped({value: 0}), truffleAssert.ErrorType.REVERT);
+    await truffleAssert.fails(instance.coinFlipped({value: 10000}), truffleAssert.ErrorType.REVERT);
   });
 });

@@ -24,6 +24,7 @@ function bothFunctions(){
 // Let's implement inputEth() function:
 function inputEth(){
   // We can test the button with alert("input ETH");
+  /*
   // Now we create a variable with the value input in our text form:
   var ethAmmount = parseInt($("#eth_ammount").val());
   // Test it with console.log:
@@ -31,9 +32,19 @@ function inputEth(){
 
   // Let's create a config for our send() argument:
   var config = {
-    value: ethAmmount
-  }
+          value: ethAmmount.toString(),
+          gas: 21000
+      }
+  */
+  var ethAmmount = $("#eth_ammount").val();
 
+  var amountInWei = web3.utils.toWei(ethAmmount, "ether");
+  console.log("Ammount of ETH inserted: " + amountInWei);
+
+  var config = {
+      value: amountInWei,
+      gas: 100000
+  }
   /* Now we can call our function flipCoin() in our contract. We also need to tell web3 where
   to send this tx, running ".send()". The argument will be our new JS variable ethAmmount: */
   contractInstance.methods.flipCoin().send(config)

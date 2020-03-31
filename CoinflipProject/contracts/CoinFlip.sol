@@ -3,6 +3,9 @@ pragma solidity 0.5.12;
 
 contract CoinFlip is Ownable{
 
+  constructor() public payable{
+      owner = msg.sender;
+  }
     // Let's create an event everytime someone "flips a coin", giving us his address:
     event coinFlipped(address);
     // And an event with how much was paid to the player:
@@ -18,10 +21,10 @@ contract CoinFlip is Ownable{
     // Variable for the ammount paid to the player:
     uint valueToPlayer;
 
-    /* Function with some pseudo randomness, given by Filip:
+    // Function with some pseudo randomness, given by Filip:
     function random() public view returns(uint){
         return now % 2;
-    } */
+    }
 
     // Let's create a function that flips the coin. It has to be payable.
     function flipCoin() public payable returns(uint){
@@ -64,7 +67,7 @@ contract CoinFlip is Ownable{
     }
 
     // Let's create a function to withdraw all the funds, but only the owner!
-    function withdrawAll () public onlyOwner returns(uint) {
+    function withdrawAll () public onlyOwner payable returns(uint) {
         uint toTransfer = balance;
         balance = 0;
         msg.sender.transfer(toTransfer);
