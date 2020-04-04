@@ -1,11 +1,5 @@
 var abi = [
   {
-    "inputs": [],
-    "payable": true,
-    "stateMutability": "payable",
-    "type": "constructor"
-  },
-  {
     "anonymous": false,
     "inputs": [
       {
@@ -64,14 +58,17 @@ var abi = [
   {
     "constant": false,
     "inputs": [],
+    "name": "depositBalance",
+    "outputs": [],
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
     "name": "flipCoin",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "outputs": [],
     "payable": true,
     "stateMutability": "payable",
     "type": "function"
@@ -117,8 +114,8 @@ var abi = [
         "type": "uint256"
       }
     ],
-    "payable": true,
-    "stateMutability": "payable",
+    "payable": false,
+    "stateMutability": "nonpayable",
     "type": "function"
   }
 ]

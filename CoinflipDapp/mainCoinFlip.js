@@ -24,23 +24,14 @@ function bothFunctions(){
 // Let's implement inputEth() function:
 function inputEth(){
   // We can test the button with alert("input ETH");
-  /*
   // Now we create a variable with the value input in our text form:
-  var ethAmmount = parseInt($("#eth_ammount").val());
-  // Test it with console.log:
-  console.log("Ammount of ETH inserted: " + ethAmmount);
-
-  // Let's create a config for our send() argument:
-  var config = {
-          value: ethAmmount.toString(),
-          gas: 21000
-      }
-  */
   var ethAmmount = $("#eth_ammount").val();
-
+  // Transform it in wei (do have like 0.1 ETH):
   var amountInWei = web3.utils.toWei(ethAmmount, "ether");
+  // Test it with console.log:
   console.log("Ammount of ETH inserted: " + amountInWei);
 
+  // Let's create a config for our send() argument:
   var config = {
       value: amountInWei,
       gas: 100000
@@ -56,14 +47,14 @@ function inputEth(){
   })
   .on("receipt", function(receipt){
     console.log(receipt);
-    alert("Done");
+    alert("Coin Flipped!");
   })
 
 }
 
 // Let's create a function that gets the result of the flipCoin() in the blockchain and shows it in the browser:
 function displayResult(){
-  contractInstance.methods.getResultOfGame().call().then(function(res){
+  contractInstance.events.result().on().then(function(res){
     // Let's console.log see the format of the result:
     console.log(res);
     // Now we use jquery to set the value of the result:
