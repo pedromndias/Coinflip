@@ -7,8 +7,6 @@ contract CoinFlip is Ownable{
 
     address public owner;
     uint private balance;
-    uint resultOfGame;
-    uint valutToPlayer;
 
     function random() public view returns(uint){
         return now % 2;
@@ -19,11 +17,15 @@ contract CoinFlip is Ownable{
     }
 
     function flipCoin() public payable {
-        require(balance >= msg.value * 2, "Balance needs to have at least twice as ETH as guest play");
+        uint valueToPlayer = msg.value*2;
+
+        require(balance >= valueToPlayer, "Balance needs to have at least twice as ETH as guest play");
         require(msg.value != 0, "Needs to send positive balance");
-        if (now % 2 == 0){
-            msg.sender.transfer(msg.value*2);
-            balance -= (msg.value*2);
+
+        uint resultOfGame = now % 2;
+        if (resultOfGame == 0){
+            msg.sender.transfer(valueToPlayer);
+            balance -= (valueToPlayer);
             emit result (0);
         }
         else{

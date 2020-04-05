@@ -12,24 +12,25 @@ $(document).ready(function() {
       console.log(contractInstance);
     });
     // Let's add a click handler to our button "FLIP ETH", with id "flip_coin":
-    $("#flip_coin").click(bothFunctions)
-    // Everytime we click the button it will execute inputEth() then displayResult()
+    $("#flip_coin").click(inputEth)
+    // Everytime we click the button it will execute inputEth()
+
+    //Let's do the same with depositBalance(), withdrawAll() and getBalance():
+    $("#add_funds").click(depositBalance)
+    $("#withdraw_funds").click(withdrawAll)
+    $("#get_balance").click(getBalance)
 
 });
-function bothFunctions(){
-  inputEth();
-  displayResult();
-}
 
 // Let's implement inputEth() function:
 function inputEth(){
   // We can test the button with alert("input ETH");
   // Now we create a variable with the value input in our text form:
-  var ethAmmount = $("#eth_ammount").val();
+  var ethAmount = $("#eth_amount").val();
   // Transform it in wei (do have like 0.1 ETH):
-  var amountInWei = web3.utils.toWei(ethAmmount, "ether");
+  var amountInWei = web3.utils.toWei(ethAmount, "ether");
   // Test it with console.log:
-  console.log("Ammount of ETH inserted: " + amountInWei);
+  console.log("Amount of ETH inserted: " + amountInWei);
 
   // Let's create a config for our send() argument:
   var config = {
@@ -37,7 +38,7 @@ function inputEth(){
       gas: 100000
   }
   /* Now we can call our function flipCoin() in our contract. We also need to tell web3 where
-  to send this tx, running ".send()". The argument will be our new JS variable ethAmmount: */
+  to send this tx, running ".send()". The argument will be our new JS variable ethAmount: */
   contractInstance.methods.flipCoin().send(config)
   .on("transactionHash", function(hash){
     console.log(hash);
@@ -47,17 +48,38 @@ function inputEth(){
   })
   .on("receipt", function(receipt){
     console.log(receipt);
-    alert("Coin Flipped!");
+    // alert("Coin Flipped!");
+    if(receipt.events.result.returnValues === 0){
+      $("#game_result").text("Congratulations! " + valueToPlayer + " ETH won");
+    }
+    else{
+      $("#game_result").text("Sorry, you lost! Play again?");
+    }
   })
-
 }
 
-// Let's create a function that gets the result of the flipCoin() in the blockchain and shows it in the browser:
-function displayResult(){
-  contractInstance.events.result().on().then(function(res){
+
+function depositBalance(){
+  var fundsAmount = $("#funds_amount").val();
+  var fundsInWei = web3.utils.toWei(fundsAmount, "ether");
+  console.log("Amount of ETH deposited in the contract: " + fundsInWei);
+  var config = {
+      value: fundsInWei,
+      gas: 100000
+  }
+  contractInstance.methods.depositBalance().send(config)
+}
+
+function withdrawAll(){
+  contractInstance.methods.withdrawAll().send();
+  $("#total_withdrew").text(res.toTransfer);
+}
+
+function getBalance(){
+  contractInstance.methods.getBalance().call().then(function(res){
     // Let's console.log see the format of the result:
     console.log(res);
     // Now we use jquery to set the value of the result:
-    $("#game_result").text(res.resultOfGame);
+    $("#total_balance").text(res.balance);
   })
 }

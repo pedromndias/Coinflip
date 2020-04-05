@@ -31,7 +31,7 @@
             <h2>How to play:</h2>
             <ul class="list">
               <li>Open your Metamask</li>
-              <li>Insert ammount of ETH</li>
+              <li>Insert amount of ETH</li>
               <li>Flip it</li>
               <li>Win it!</li>
             </ul>
@@ -40,9 +40,9 @@
 
         <div class="main">
           <div class="game">
-            <h3>Insert ammount of ETH:</h3>
+            <h3>Insert amount of ETH:</h3>
             <br>
-            <input type="text" class="form-control" id="eth_ammount" placeholder="ETH" >
+            <input type="text" class="form-control" id="eth_amount" placeholder="ETH" >
             <br><br>
             <button type="button" class="flipButton" id="flip_coin">FLIP ETH</button>
             <br><br>
@@ -52,6 +52,17 @@
             <br>
           </div>
         </div>
+      </div>
+      <br>
+      <div class="funds">
+        <input type="text" name="form-control" id="funds_amount" placeholder="Add funds here">
+        <button type="button" class="fundsButton" id="add_funds">Add funds(Admin only)</button>
+        <br>
+        <button type="button" class="withdrawButton" id="withdraw_funds">Withdraw funds(Admin only)</button>
+        Total withdrew: <span id="total_withdrew"></span>
+        <br>
+        <button type="button" class="getBalanceButton" id="get_balance">Get Balance(Admin only)</button>
+        Balance: <span id="total_balance"></span>
       </div>
       <div class="footer">
         <p>All HTML, CSS, JS and Solidity created for educational purposes by <a href="https://twitter.com/BlockchainDias">Pedro Dias<a></p>

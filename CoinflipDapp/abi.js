@@ -9,20 +9,7 @@ var abi = [
         "type": "uint256"
       }
     ],
-    "name": "ammountPaidToPlayer",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "coinFlipped",
+    "name": "result",
     "type": "event"
   },
   {
@@ -71,21 +58,6 @@ var abi = [
     "outputs": [],
     "payable": true,
     "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "getResultOfGame",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
     "type": "function"
   },
   {
